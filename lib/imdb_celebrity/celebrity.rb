@@ -1,6 +1,6 @@
 module ImdbCelebrity
   #Represents a celebrity on IMDB.com
-  class celebrity
+  class Celebrity
     attr_accessor :id, :url, :name
     
     # Initialize a new IMDB celebrity object with it's IMDB id (as a String)
@@ -12,14 +12,16 @@ module ImdbCelebrity
     # accessor that needs the remote data, a HTTP request is made (once).
     #
     
-    def initialize
-      
+    def initialize imdb_id, title = nil
+      @id = imdb_id
+      @url = "http://www.imdb.com/name/nm#{imdb_id}/"
+      @name = title.gsub(/"/, "") if title
     end
     
     private
     
     def document
-      @document || = Hpricot(Imdb::Celebrity.find_by_id(@id)) 
+      @document ||= Hpricot(Imdb::Celebrity.find_by_id(@id)) 
     end
     
     def self.find_by_id imdb_id

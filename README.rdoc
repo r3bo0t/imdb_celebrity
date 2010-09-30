@@ -1,14 +1,21 @@
 = imdb_celebrity
 
-* http://github.com/#{github_username}/#{project_name}
+* http://github.com/sandeepkrao/imdb_celebrity
 
 == DESCRIPTION:
 
-FIX (describe your package)
+* Imdb_celebrity is a ruby-gem which is used to scrap celebrity pages from imdb.com . You can install imdb_celebrity as 
+    gem install imdb_celebrity
+  With current initial release we can search a celebrity with name or we can fetch content for a celebrity with given IMDB id or/and name
+  
+  Usages:
+    require 'imdb_celebrity'
+    
+    ** searching a celebrity
+      imdb_celebs = ImdbCelebrity::Search.new("Brad Pitt")
+      imdb_celebs.celebrities
+      # this will return array of celebrity objects. 
 
-== FEATURES/PROBLEMS:
-
-* FIX (list of features or problems)
 
 == SYNOPSIS:
 

@@ -2,3 +2,7 @@
 
 * 1 major enhancement:
   * Initial release
+  * searching for celebrity for exact match or all matches available for query string
+  * fetch data for a celebrity for give imdbid [& name]
+  * Using hpricot or nokogiri for parsing IMDB pages.
+  * 

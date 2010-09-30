@@ -1,6 +1,6 @@
 module ImdbCelebrity
 
-  class Search
+  class Search < CelebrityList
     attr_reader :query
     
     def initialize query
@@ -8,17 +8,17 @@ module ImdbCelebrity
     end
     
     def celebrities
-      @celebrities = (excat_match? ? parse_celebrity : parse_celebrities)
+      @celebrities = (exact_match? ? parse_celebrity : parse_celebrities)
     end
     
     private
     
     def document
-      @document || = Hpricot(ImdbCelebrity::Search.query(@query))
+      @document ||= Hpricot(ImdbCelebrity::Search.query(@query))
     end
     
     def self.query query
-      open("http://imdb.com/find?s=nm&q=#{query}")
+      open(URI.encode("http://imdb.com/find?s=nm&q=#{query}"), "User-Agent" => "ruby")
     end
     
     def parse_celebrity
@@ -29,7 +29,8 @@ module ImdbCelebrity
     
     # Returns true if search returns specificly only one result, exact match
     def exact_match?
-      !@document.at("//h3[text()^='Overview'/..]").nil?
+      #!document.at("//h3[text()^='Overview'/..]").nil?
+      !document.at("//h3[text()^='Overview']/..").nil?
     end
     
   end
