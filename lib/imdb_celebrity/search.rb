@@ -1,36 +1,43 @@
+require 'imdb_celebrity/parser/hpricot_parser/search_parser'
+require 'imdb_celebrity/parser/nokogiri_parser/search_parser'
+
 module ImdbCelebrity
 
-  class Search < CelebrityList
-    attr_reader :query
+  class Search
+    attr_reader :query, :parser
     
-    def initialize query
-      @query = query
+    def initialize(query, parser ="HpricotParser")
+      @query = search_uri query
+      @parser_text = parser
+      @parser = initialize_parser parser
     end
     
     def celebrities
-      @celebrities = (exact_match? ? parse_celebrity : parse_celebrities)
+      @celebrities = (@parser.exact_match? ? @parser.parse_celebrity : parse_celebrities)
     end
     
     private
     
-    def document
-      @document ||= Hpricot(ImdbCelebrity::Search.query(@query))
-    end
-    
-    def self.query query
-      open(URI.encode("http://imdb.com/find?s=nm&q=#{query}"), "User-Agent" => "ruby")
+    def search_uri query
+      "http://imdb.com/find?s=nm&q=#{query}"
     end
     
     def parse_celebrity
       id = @document.at("head/link[@rel='canonical']")[:href][/\d+/]
-      title = @document.at("h1").inner_html.split('<span').first.inner_text.imdb_unescape_html
-      [ImdbCelebrity::Celebrity.new(id, title)]
+      name = @document.at("h1").inner_html.split('<span').first.inner_text.imdb_unescape_html
+      [ImdbCelebrity::Celebrity.new(id, name, @parser_text)]
     end
     
-    # Returns true if search returns specificly only one result, exact match
-    def exact_match?
-      #!document.at("//h3[text()^='Overview'/..]").nil?
-      !document.at("//h3[text()^='Overview']/..").nil?
+    def parse_celebrities
+      celebrities = @parser.parse_celebrities @parser_text
+      celebrities.uniq.map do |values|
+        ImdbCelebrity::Celebrity.new(*values)
+      end      
+    end
+    
+    def initialize_parser parser
+      return ImdbCelebrity::Parser::HpricotParser::SearchParser.new(@query) if parser == "HpricotParser"
+      return ImdbCelebrity::Parser::NokogiriParser::SearchParser.new(@query) if parser == "NokogiriParser"
     end
     
   end

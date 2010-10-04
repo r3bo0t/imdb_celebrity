@@ -8,6 +8,16 @@ lib/imdb_celebrity.rb
 lib/imdb_celebrity/cli.rb
 lib/imdb_celebrity/search.rb
 lib/imdb_celebrity/celebrity.rb
+lib/imdb_celebrity/string_extensions.rb
+lib/imdb_celebrity/parser/parser.rb
+lib/imdb_celebrity/parser/hpricot_parser.rb
+lib/imdb_celebrity/parser/nokogiri_parser.rb
+lib/imdb_celebrity/parser/hpricot_parser/search_parser.rb
+lib/imdb_celebrity/parser/hpricot_parser/hpricot_parser.rb
+lib/imdb_celebrity/parser/hpricot_parser/celebrity_bio_parser.rb
+lib/imdb_celebrity/parser/nokogiri_parser/nokogiri_parser.rb
+lib/imdb_celebrity/parser/nokogiri_parser/search_parser.rb
+lib/imdb_celebrity/parser/nokogiri_parser/celebrity_bio_parser.rb
 script/console
 script/destroy
 script/generate
