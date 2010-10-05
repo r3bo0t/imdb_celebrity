@@ -25,12 +25,15 @@ module ImdbCelebrity
       [@id, @url, @name, @real_name, @biography, @height, @nationality]
     end
     
-    def name
-      @name ||= @parser.name
+    def name(flag)
+      if flag==true
+        @name = @parser.name
+      else
+        @name ||= @parser.name
+      end
     end
     
     def real_name
-      puts "coming here"
       @real_name ||=@parser.real_name
     end
     
