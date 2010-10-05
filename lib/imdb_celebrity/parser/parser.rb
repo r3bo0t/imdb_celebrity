@@ -2,7 +2,7 @@ module ImdbCelebrity
   module Parser
     module Parser
       def name
-        document.at("h1").inner_html rescue nil
+        document.at("a[@class='main']").inner_text rescue nil
       end
       
       def real_name

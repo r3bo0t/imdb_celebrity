@@ -25,7 +25,7 @@ module ImdbCelebrity
       [@id, @url, @name, @real_name, @biography, @height, @nationality]
     end
     
-    def name(flag)
+    def name(flag=false)
       if flag==true
         @name = @parser.name
       else
