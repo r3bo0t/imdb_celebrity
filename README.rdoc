@@ -4,7 +4,7 @@
 
 == DESCRIPTION:
 
-* Imdb_celebrity is a ruby-gem which is used to scrap celebrity pages from imdb.com . You can install imdb_celebrity as 
+* Imdb_celebrity is a ruby-gem which is used for scrapping celebrity pages from imdb.com . You can install imdb_celebrity as 
     gem install imdb_celebrity
   With current initial release we can search a celebrity with name or we can fetch content for a celebrity with given IMDB id or/and name
   

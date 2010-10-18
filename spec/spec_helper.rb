@@ -8,3 +8,12 @@ end
 
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 require 'imdb_celebrity'
+
+Spec::Runner.configure do |config|
+  config.before(:all){
+    
+  }
+  config.after(:all){
+    
+  }
+end
