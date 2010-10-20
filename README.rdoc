@@ -4,9 +4,10 @@
 
 == DESCRIPTION:
 
-* Imdb_celebrity is a ruby-gem which is used for scrapping celebrity pages from imdb.com . You can install imdb_celebrity as 
+* Imdb_celebrity is a ruby-gem which is used for scrapping celebrity pages from www.imdb.com . You can install imdb_celebrity as 
     gem install imdb_celebrity
-  With current initial release we can search a celebrity with name or we can fetch content for a celebrity with given IMDB id or/and name
+  With current initial release we can search a celebrity with name or we can fetch content for a celebrity with given IMDB id or/and name,  by specifying which parser we want to use.
+  Right now we support Hpricot and Nokogiri as parser classes.
   
   Usages:
     require 'imdb_celebrity'
@@ -15,19 +16,28 @@
       imdb_celebs = ImdbCelebrity::Search.new("Brad Pitt")
       imdb_celebs.celebrities
       # this will return array of celebrity objects. 
-
-
-== SYNOPSIS:
-
-  FIX (code sample of usage)
+      Also you can define the ParserClass which u wanna use [ right now you have choice of using either Nokogiri or Hpricot], as
+      imdb_celebs = ImdbCelebrity::Search.new("Brad Pitt", "NokogiriParser") #by default it will be HpricotParser
+      imdb_celebs.celebrities
+    
+    ** Fetching data for celebrity
+      celeb = ImdbCelebrity::Celebrity.new("0000093", "brad pitt") # give 7 digit imdbid number
+      celeb.parser
+      => it will give you the type of parser class it using
+      celeb.public_methods(false)
+      => will give you the public methods of ImdbCelebrity::Celebrity class only
+      celeb.to_s
+      => will return an array of celebrity data items containing name, real_name, biography, nationality, height, url.
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+  * Hpricot gem should be installed.
+  * Nokogiri gem should be installed.
+  
 
 == INSTALL:
-
-* FIX (sudo gem install, anything else)
+  gem install imdb_celebrity
+  you may need sudo permissions to install gem.
 
 == LICENSE:
 

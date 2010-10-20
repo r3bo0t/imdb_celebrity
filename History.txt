@@ -1,3 +1,9 @@
+=== 0.0.3 2010-10-20
+  * updating README doc for the gem
+
+=== 0.0.2 2010-10-18
+  * Test coverage for the imdb celebrity gem
+
 === 0.0.1 2010-09-29
 
 * 1 major enhancement:
