@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/conflikt/imdb_celebrity/badges/gpa.svg)](https://codeclimate.com/github/conflikt/imdb_celebrity)
+
 = imdb_celebrity
 
 * http://github.com/sandeepkrao/imdb_celebrity
